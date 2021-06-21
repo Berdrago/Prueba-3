@@ -2,7 +2,7 @@ from core.forms import formAgregar
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout  
 from django.shortcuts import redirect, render
-from .models import Producto
+from .models import Fabricante, Producto
 from django.contrib.auth.models import User
 
 
@@ -17,41 +17,60 @@ def home(request):
 
 def Admin(request):
     producto = Producto.objects.all()
-    datos = {
+    datos = {   
         'producto':producto,
         'form' : formAgregar()
     }
-    if request.method=='POST':
-        formulario = formAgregar(request.POST,request.FILES)
-        if formulario.is_valid :
-                formulario.save()
-                datos   ['mensaje'] = "Los datos se guardaron correctamente "
-                
+
     return render(request,'Admin.html',datos)
 
 def MB(request):
-    return render(request,'MB.html',{})
+    productos =  Producto.objects.filter(stock__gte=0).order_by('-idProducto') 
+    contexto=  {
+        'productos':productos}
+    return render(request,'MB.html',contexto)
 
 def CPU(request):
-    return render(request,'CPU.html',{})
+    productos =  Producto.objects.filter(stock__gte=0).order_by('-idProducto') 
+    contexto=  {
+        'productos':productos}
+    return render(request,'CPU.html',contexto)
 
 def GPU(request):
-    return render(request,'GPU.html',{})
+    productos =  Producto.objects.filter(stock__gte=0).order_by('-idProducto') 
+    contexto=  {
+        'productos':productos}
+    return render(request,'GPU.html',contexto)
 
 def HDD(request):
-    return render(request,'HDD.html',{})
+    productos =  Producto.objects.filter(stock__gte=0).order_by('-idProducto') 
+    contexto=  {
+        'productos':productos}
+    return render(request,'HDD.html',contexto)
 
 def M2(request):
-    return render(request,'M2.html',{})
+    productos =  Producto.objects.filter(stock__gte=0).order_by('-idProducto') 
+    contexto=  {
+        'productos':productos}
+    return render(request,'M2.html',contexto)
 
 def PSU(request):
-    return render(request,'PSU.html',{})
+    productos =  Producto.objects.filter(stock__gte=0).order_by('-idProducto') 
+    contexto=  {
+        'productos':productos}
+    return render(request,'PSU.html',contexto)
 
 def RAM(request):
-    return render(request,'RAM.html',{})
+    productos =  Producto.objects.filter(stock__gte=0).order_by('-idProducto') 
+    contexto=  {
+        'productos':productos}
+    return render(request,'RAM.html',contexto)
 
 def SSD(request):
-    return render(request,'SSD.html',{})
+    productos =  Producto.objects.filter(stock__gte=0).order_by('-idProducto') 
+    contexto=  {
+        'productos':productos}
+    return render(request,'SSD.html',contexto)
 def Signin(request):
     contexto = {}
     return render(request,'Signin.html',{})
@@ -71,6 +90,9 @@ def Deslogeo (request):
     logout(request)
     return redirect('home')
 
+def Signup (request):
+    return render(request,'Signup.html',{})
+
 
 def Registrando(request): 
     usuario = request.POST.get('usuario','') 
@@ -83,9 +105,20 @@ def Registrando(request):
         return redirect('home')
     else:
         return redirect('Signin')
+def EliminarProducto(request,  idProducto):
+    producto = Producto.objects.get( idProducto= idProducto)
+    producto.delete()
 
-def Signup (request):
-    return render(request,'Signup.html',{})
+    return redirect('Admin')
+def imagen(request):
+    productos =  Producto.objects.filter(stock__gte=0).order_by('-idProducto') 
+    contexto=  {
+        'productos':productos}
+    return render(request,'Admin.html',contexto)
+
+
+
+
 
 
 

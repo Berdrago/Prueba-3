@@ -4,11 +4,10 @@
 {%  endblock %}
 
 {% block contenido%}
-<div style="background-color: white;">
-</div>
+<div style="background-color: white;"> </div>
+<input type="submit" style="border: 50%;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregar"   value="Agregar nuevos productos">
 <div class="row " style="color: white; text-align: center;">
 <h1 >Listado de Productos </h1>
-<h6 style="color: white;"> Agregar Producto <img   class="logo"  data-bs-toggle="modal" data-bs-target="#agregar"  src="{% static 'iconos/mas.gif ' %}" width="5%" height="60%" alt=""></h6>
 <div class="row" style="color: white;">
 <table border= 1 > 
 <tr>
@@ -23,100 +22,142 @@
 <tr>
     <td> <h3>{{ve.idProducto}} </h3> </td>
     <td><h3> {{ve.nombreProducto}}</h3></td>
-    <td><h3>{{ve.fabricante}} </h3></td>
-    <td><h3>{{ve.componente}} </h3></td>
-    <td><h3>{{ve.precio}} </h3></td>
+    <td><h3> {{ve.fabricante}} </h3></td>
+    <td><h3> {{ve.componente}} </h3></td>
+    <td><h3> {{ve.precio}} </h3></td>
     <td><h3> {{ve.stock}}</h3></td>
     <td> <input type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editar"   value="Editar"> </td>
     <td> <input type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#imagen"   value="Imagen"></td>
     <td> <input type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar"  value="Eliminar"> </td>
 </tr>
-<div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">    
+{%  endfor %}
+<div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black;">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Editar Productos</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Producto:</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estas seguro ?
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger" href="#" role="button">Eliminar</a>
+            </div>
         </div>
-        <div class="modal-body" style="color: black;">
-          ...   
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-  </div>
-  <div class="modal fade" id="imagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Ver imagen de producto</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" style="color: black;">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel" style="color: black;">¿Estas seguro de que quieres eliminar este producto?</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" style="color: black;">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endfor %}
-<div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Agregar Nuevo producto</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" style="color: white;">
-        <div class="row">
-          <form method="POST" enctype="multipart/form-data" action="" id="Formulario1" style="color: white;">
-              {% csrf_token %}
-              <div class="form-group"> 
-              </div>
-              <input type="submit" class="btn btn-danger" id="Enviar" value="Enviar">
-              <input type="reset" class="btn btn-primary" id="limpiar" value="Limpiar">
-              <div id="Error"     class="alert alert-danger" role="alert"></div>
-          </form>
-          {% if not mensaje == ''  %}
-          <div class="alert alert-success" role="alert">  
-              {{mensaje}}
-          </div>
-          {% endif %}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
 </div>
- 
+
+
+<!-- Modal -->
+<div class="modal fade" id="agregar" style="color: black;" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">Formulario de registro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                        <form action="#" method="POST" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="Id producto" class="form-label">Id producto</label>
+                                <input type="number" class="form-control" id="Id producto" name="Id producto" placeholder="Ingrese el Id producto">
+                            </div>
+                            <div class="mb-3">
+                                <label for="producto" class="form-label">Nombre de producto</label>
+                                <input type="text" class="form-control" id="producto" name="producto" placeholder="Ingrese el nombre del producto">
+                            </div>
+                            <div class="mb-3">
+                                <label for="fabricante" class="form-label">Fabricante</label>
+                                <select class="form-select" name="fabricante" id="fabricante">
+                                        <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Imagen</label>
+                                <input class="form-control" type="file" id="formFile" name="imagen">
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 50px;">Registrar</button>
+                            </div>
+                            <div class="mb-3">
+                                <button type="reset" class="btn btn-danger" style="width: 100%;">Limpiar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>        
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="imagen" style="color: black;" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Imagen de producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            {% for producto in productos %}
+            <div class="col-3">
+                <div class="card" style="width: 100%; margin-bottom: 20px;  ">
+                    <a href="#">
+                        <img  src="/static/media/{{producto.imagen}}"  class="card-img-top"  alt="Producto"> 
+                    </a>
+                </div>
+            </div>
+            {% endfor %} 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+<div class="modal fade" id="editar" style="color: black;" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="#" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="Id producto" class="form-label">Id producto</label>
+                    <input type="number" class="form-control" id="Id producto" name="Id producto" placeholder="Ingrese el Id producto" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="producto" class="form-label">Nombre de producto</label>
+                    <input type="text" class="form-control" id="producto" name="producto" placeholder="Ingrese el nombre del producto">
+                </div>
+                <div class="mb-3">
+                    <label for="fabricante" class="form-label">Fabricante</label>
+                    <select class="form-select" name="fabricante" id="fabricante">
+                            <option value=""></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Imagen</label>
+                    <input class="form-control" type="file" id="formFile" name="imagen">
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 50px;">Editar</button>
+                </div>
+                <div class="mb-3">
+                    <button type="reset" class="btn btn-danger" style="width: 100%;">Limpiar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
 
 
 {%  endblock %}
+
+
 
 
     

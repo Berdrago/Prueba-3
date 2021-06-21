@@ -1,4 +1,4 @@
-from core.views import Admin,  CPU, Deslogeo, GPU, HDD, Logeando, M2, PSU, RAM, Registrando, SSD, Signin, Signup,home,MB
+from core.views import Admin,  CPU, Deslogeo, EliminarProducto, GPU, HDD, Logeando, M2,  PSU, RAM, Registrando, SSD, Signin, Signup,home,MB
 from django.contrib import admin
 from django.urls import path
 
@@ -8,7 +8,7 @@ urlpatterns = [
     path('cpu',CPU,name   = 'CPU'),
     path('hdd',HDD,name   = 'HDD'),
     path('gpu',GPU,name   = 'GPU'),
-    path('m2',M2,name    = 'M2'),
+    path('m2',M2,name     = 'M2'),
     path('psu',PSU,name   = 'PSU'),
     path('ram',RAM,name   = 'RAM'),
     path('ssd',SSD,name   = 'SSD'),
@@ -17,6 +17,7 @@ urlpatterns = [
     path('signin/Logeando/',Logeando,name    =  'Logeando'),
     path('signin/deslogeo/',Deslogeo ,name   = 'Deslogeo'),
     path('signup/Registrando/',Registrando ,name   = 'Registrando'),
-    path('signup',Signup,name   = 'Signup')
+    path('signup',Signup,name   = 'Signup'),
+    path('EliminarProducto/<int:idProducto>/',EliminarProducto , name='EliminarProducto')
     
 ]

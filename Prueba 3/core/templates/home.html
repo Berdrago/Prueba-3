@@ -11,7 +11,8 @@
     {%  endblock %}
   </head>
   <body  >
-    <div class="container" style="background-color:rgb(26, 26, 26);height: 5000%;">
+    <div class="container" style="background-color:rgb(26, 26, 26);height: 50%; background-repeat: no-repeat center center fixed;
+    background-size: cover ;">
         <nav class="navbar navbar-expand-lg " > 
           <a href=" {% url 'home' %}"><img class="logo"    src="../static/img/pc-logo.jpg "  width="25%" height="25%" > </a>
           <div class="container-fluid">
@@ -104,7 +105,7 @@
                   <img  src="/static/media/{{producto.imagen}}"  class="card-img-top"  alt="Producto"> 
                 </a> 
                 <div class="card-body" style="color:black;">
-                  <p class="card-text text-center"> Nombre de producto : {{producto.nombreProducto}}</p>
+                  <p class="card-text text-center" >  Nombre de producto : {{producto.nombreProducto}}</p>
                   <p class="card-text text-center" > Nobre del Fabricante:{{producto.fabricante}}</p>
                   <p class="card-text text-center" > Precio del producto :{{producto.precio}}</p>
                   <p class="card-text text-center" > Stock de producto :{{producto.stock}} </p> 
